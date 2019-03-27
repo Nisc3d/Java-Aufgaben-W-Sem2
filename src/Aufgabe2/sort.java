@@ -4,14 +4,16 @@ public class sort {
 
     public int[] initArray(int num) {
         int[] result = new int[num];
-        for (int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++) {
             result[i] = (int) (Math.random() * 100.0);
+        }
         return result;
     }
 
     public void printArray(int[] array) {
-        for (int i = 0; i < array.length; i++)
+        for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
+        }
         System.out.println();
     }
 
@@ -55,18 +57,39 @@ public class sort {
         return wertindex;
     }
 
-    public void switchPosIntArr(int[] array, int pos1, int pos2){
+    public static void switchPosIntArr(int[] array, int pos1, int pos2) {
         int hilfsvar = 0;
         hilfsvar = array[pos1];
         array[pos1] = array[pos2];
         array[pos2] = hilfsvar;
     }
 
-    public void switchPosStringArr(String[] array, int pos1, int pos2){
+    public static void switchPosStringArr(String[] array, int pos1, int pos2) {
         String hilfsvar = "";
         hilfsvar = array[pos1];
         array[pos1] = array[pos2];
         array[pos2] = hilfsvar;
+    }
+
+    public void bubbleSort(int[] array) {
+        boolean vertauscht = false;
+        do {
+            vertauscht = false;
+            for (int i = 0; i < (array.length - 1)-i; i += 1) {
+                if (array[i] > array[i + 1]) {
+                    switchPosIntArr(array, i, i + 1);
+                    vertauscht = true;
+                }
+            }
+
+//            for (int i = array.length - 1; i > 0; i -= 1) {
+//                if (array[i] < array[i - 1]) {
+//                    switchPosIntArr(array, i, i - 1);
+//                    vertauscht = true;
+//                }
+//            }
+        } while (vertauscht == true);
+
     }
 
 

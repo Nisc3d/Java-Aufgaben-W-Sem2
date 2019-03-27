@@ -5,7 +5,7 @@ public class Main {
         sort s = new sort();
         int[] array = s.initArray(10);
         s.printArray(array);
-        s.selectionSort(array);
+        s.bubbleSort(array);
         s.printArray(array);
     }
 }
