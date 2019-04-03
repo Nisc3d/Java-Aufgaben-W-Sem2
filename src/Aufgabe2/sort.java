@@ -75,13 +75,12 @@ public class sort {
         boolean vertauscht = false;
         do {
             vertauscht = false;
-            for (int i = 0; i < (array.length - 1)-i; i += 1) {
+            for (int i = 0; i < (array.length - 1) - i; i += 1) {
                 if (array[i] > array[i + 1]) {
                     switchPosIntArr(array, i, i + 1);
                     vertauscht = true;
                 }
             }
-
 //            for (int i = array.length - 1; i > 0; i -= 1) {
 //                if (array[i] < array[i - 1]) {
 //                    switchPosIntArr(array, i, i - 1);
@@ -89,8 +88,81 @@ public class sort {
 //                }
 //            }
         } while (vertauscht == true);
-
     }
 
+    public int[] mergeSort(int[] array) {
+        if (array.length == 0) {
+            return array;
+        }
+        else {
+            //split in 2 arrays
+            int i = 0;
+            int[] ar1 = new int[array.length / 2 + 1];
+            int[] ar2 = new int[array.length / 2 + 1];
+            while (i <= (array.length / 2)) {
+                ar1[i] = array[i];
+                i += 1;
+            }
+            i = array.length;
+            while (i > (array.length / 2)) {
+                ar2[i] = array[i];
+                i -= 1;
+            }
+            //arrays mischen
+            return merge(ar1, ar2);
+
+        }
+    }
+
+    public int[] merge(int[] ar1, int[] ar2) {
+        int i = 0;
+        boolean ar1bigger = false;
+        int[] hilfsar;
+        if (ar1.length > ar2.length) {
+            hilfsar = new int[ar1.length];
+            ar1bigger = true;
+        }
+        else {
+            hilfsar = new int[ar2.length];
+            ar1bigger = false;
+        }
+
+
+        if (ar1bigger == true) {
+            while (i <= ar2.length - 1) {
+                if (ar1[i] <= ar2[i]) {
+                    hilfsar[i] = ar1[i];
+                }
+                else {
+                    hilfsar[i] = ar2[i];
+                }
+                i += 1;
+            }
+            i = ar2.length;
+            while (i <= ar1.length - 1) {
+                hilfsar[i] = ar1[i];
+                i += 1;
+            }
+
+        }
+        else {
+            while (i <= ar1.length - 1) {
+                if (ar1[i] <= ar2[i]) {
+                    hilfsar[i] = ar1[i];
+                }
+                else {
+                    hilfsar[i] = ar2[i];
+                }
+                i += 1;
+            }
+            i = ar2.length;
+            while (i <= ar2.length-1){
+                hilfsar[i] = ar2[i];
+                i += 1;
+            }
+        }
+
+        return hilfsar;
+    }
 
 }
